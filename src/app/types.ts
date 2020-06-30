@@ -11,7 +11,7 @@ const TYPES = {
     /**
      * Repositories
      */
-    JobRepository: Symbol.for("JobRepository"),
+    UserRepository: Symbol.for("UserRepository"),
 };
 
 export { TYPES };

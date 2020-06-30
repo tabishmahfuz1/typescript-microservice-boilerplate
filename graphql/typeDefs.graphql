@@ -1,203 +1,24 @@
-scalar Date
-
 type Query {
-    getJob(jobId: ID!): Job!
-    getJobs(jobFilters: JobFilterInput): [Job]!
-    getCompanies(companyInput: CompanyInput): [Company]!
-    getDivisions(companyId: ID!): [Division]!
-    getPMTs(divisionId: ID!): [PMT]!
-    getAllPMTs: [PMT]!
-
-    getDivision(divisionId: ID!): Division!
-    getCompany(companyId: ID!): Company!
+    getUser(userId: ID!): User!
 }
 
 type Mutation {
-    createJob (jobInput: JobInput!): Job!
-    updateJob (jobInput: UpdateJobInput!): Job!
-    deleteJob (jobId: ID!): Boolean!
-
-    addCompany(companyInput: CompanyInput!): Company!
-    updateCompany(companyInput: UpdateCompanyInput!): Company!
-
-    addDivision(divisionInput: DivisionInput!): Division!
-    updateDivision(divisionInput: UpdateDivisionInput!): Division!
-
-    addPMT(pmtInput: PMTInput!): PMT!
-    updatePMT(pmtInput: UpdatePMTInput!): PMT!
+    addUser (userInput: UserInput!): User!
 }
 
-enum Type {
-    Design
-    Video
-    HTML
-    Quote
-    Content
-    Concept
-    Print
-    Gift
-    Copy
-    Adaptation
-}
-
-enum Status {
-    YetToStart
-    WIP
-    OnHold
-    Completed
-}
-
-type Job {
+type User {
     id: String!
-    jobId: String!
-    description: String!
-    company: Company!
-    quantity: Int
-    division: Division!
-    pmt: PMT!
-    type: [Type!]!
-    status: Status!
-    statusDescription: String!
-    startDate: String
-    firstCut: String
-    endDate: String
-    mailReceivedDate: String!
-    assignedUser: String
-    price: Float
-}
-
-type Company {
-    id: ID!
     name: String!
-    address: String
-    phone: String
-    gstInGoods: String!
-    gstInService: String!
-    divisions: [Division]!
+    dob: String!
 }
 
-type Division {
-    id: ID!
+input UserInput {
     name: String!
-    description: String
-    company: Company!
-}
-
-type PMT {
-    id: ID!
-    firstName: String!
-    lastName: String!
-    name: String!
-    phone: String
-    email: String
-    dob: String
-    address: String
-    division: Division!
-}
-
-type Address {
-    line1: String
-    line2: String
-    postalCode: String
-    city: String
-    state: String
-}
-
-# Inputs
-
-input JobFilterInput {
-    company: ID
-    division: ID
-    pmt: ID
-    type: [Type]
-    status: Status
-    startDate: String
-    firstCut: String
-    endDate: String
-    assignedUser: String
-    mailReceivedDate: String
-}
-
-input JobInput {
-    description: String!
-    company: ID!
-    quantity: Int
-    division: ID!
-    pmt: ID!
-    type: [Type!]!
-    status: Status
-    startDate: String
-    firstCut: String
-    endDate: String
-    assignedUser: String
-    price: Float
-    mailReceivedDate: String!
+    dob: String!
 }
 
 input UpdateJobInput {
-    jobId: ID!
-    status: Status!
-    startDate: String
-    firstCut: String
-    endDate: String
-    assignedUser: String
-}
-
-input CompanyInput {
+    id: String!
     name: String!
-    address: String
-    phone: String
-    gstInGoods: String!
-    gstInService: String!
-}
-
-input UpdateCompanyInput {
-    id: ID!
-    name: String
-    address: String
-    phone: String
-    gstInGoods: String
-    gstInService: String
-}
-
-input AddressInput {
-    line1: String
-    line2: String
-    postalCode: String
-    city: String
-    state: String
-}
-
-input DivisionInput {
-    name: String
-    description: String
-    companyId: ID!
-}
-
-input UpdateDivisionInput {
-    id: ID!
-    name: String
-    description: String
-    companyId: ID
-}
-
-input PMTInput {
-    firstName: String!
-    lastName: String!
-    phone: String
-    email: String
-    dob: String
-    address: String
-    divisionId: ID!
-}
-
-input UpdatePMTInput {
-    id: ID!
-    firstName: String
-    lastName: String
-    phone: String
-    email: String
-    dob: String
-    address: String
-    divisionId: ID
+    dob: String!
 }
