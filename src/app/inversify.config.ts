@@ -7,14 +7,11 @@ import { KeyStore, LocalKeyStore } from "./providers/Keystore";
 import { Logger, Log4jsLogger } from "./Log";
 import { TokenHandler, JWTHandler } from "./providers/TokenHandler";
 import Schema from "./graphql/Schema";
-import MedInfoSchema from "./graphql/MedInfoSchema";
+import AppSchema from "./graphql/AppSchema";
 import { Database } from "./database/Database";
 import { MongooseDatabase } from "./database/Database";
 import { MetricCollectorInterface, PrometheusMetricCollector } from "./providers/MetricsProvider";
-import { JobRespository, MongooseJobRepository } from "./database/repositories/JobRepository";
-// import { DevConfig } from "./providers/config/DevConfig";
-// import { TestConfig } from "../../tests/mocks/TestConfig";
-// import { ProdConfig } from "./providers/config/ProdConfig";
+import { UserRespository, MongooseUserRepository } from "./database/repositories/UserRepository";
 
 const container = new Container({ autoBindInjectable: true });
 
@@ -23,11 +20,12 @@ container.bind<Database>(TYPES.Database).to(MongooseDatabase).inSingletonScope()
 container.bind<KeyStore>(TYPES.KeyStore).to(LocalKeyStore).inRequestScope();
 container.bind<Logger>(TYPES.Logger).to(Log4jsLogger).inSingletonScope();
 container.bind<TokenHandler>(TYPES.TokenHandler).to(JWTHandler).inRequestScope();
+container.bind<Schema>(TYPES.Schema).to(AppSchema).inSingletonScope();
 container.bind<MetricCollectorInterface>(TYPES.MetricCollector).to(PrometheusMetricCollector).inSingletonScope();
 
 /**
  * Repositories
  */
-container.bind<JobRespository>(TYPES.JobRepository).to(MongooseJobRepository);
+container.bind<UserRespository>(TYPES.UserRepository).to(MongooseUserRepository);
 
 export { container };
