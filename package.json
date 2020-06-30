@@ -1,7 +1,7 @@
 {
-  "name": "webinar-backend-service",
+  "name": "ts-app",
   "version": "1.0.0",
-  "description": "Webinar Backend Service",
+  "description": "TS App Base",
   "main": "index.js",
   "scripts": {
     "build": "tsc",

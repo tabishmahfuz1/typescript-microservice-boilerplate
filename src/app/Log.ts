@@ -59,6 +59,21 @@ export class Log4jsLogger implements Logger {
     }
 }
 
+@injectable()
+export class STDOutLogger implements Logger {
+    info(str: string, data?: any) {
+        console.log(str, data);
+    }
+
+    debug(str: string, data?: any) {
+        console.log(str, data);
+    }
+
+    error(str: string, data?: any) {
+        console.error(str, data);
+    }
+}
+
 export interface Logger {
     info(str: string, data?: any)
     debug(str: string, data?: any)

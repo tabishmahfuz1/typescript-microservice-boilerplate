@@ -17,8 +17,10 @@ export default class DotEnvConfig extends Config {
             port: parseInt(process.env.PORT) || 80,
             dbUrl: process.env.DB_URL,
             publicKeyPath: process.env.PUBLIC_KEY_PATH,
-            logFilePath: path.join(__dirname, `../../../../${process.env.LOG_FILE_PATH}`),
-            appName: process.env.APP_NAME || 'JobTrackingService'
+			logFilePath: process.env.LOG_FILE_PATH? 
+				path.join(__dirname, `../../../../${process.env.LOG_FILE_PATH}`)
+				: path.join(__dirname, `../../../../logs/app.log`),
+            appName: process.env.APP_NAME || 'TSApp'
         };
     }
 	

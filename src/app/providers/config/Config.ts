@@ -5,7 +5,7 @@ export interface IConfigObject {
 	port: number,
 	dbUrl: string,
 	publicKeyPath: string,
-	logFilePath: string,
+	logFilePath?: string,
 	appName: string,
 }
 
