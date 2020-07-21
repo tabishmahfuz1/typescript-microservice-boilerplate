@@ -7,6 +7,7 @@ export interface IConfigObject {
 	publicKeyPath: string,
 	logFilePath?: string,
 	appName: string,
+	nodeENV: string
 }
 
 @injectable()

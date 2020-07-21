@@ -4,6 +4,7 @@ import Config from '../providers/config/Config';
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../types';
 import { Logger } from '../Log';
+import { ReadyStatusObserver } from '../observers/ReadyStatusObserver';
 
 export interface Database {
 	init(): any;
@@ -16,8 +17,11 @@ export class MongooseDatabase implements Database {
 
 	constructor(
 		@inject(TYPES.Config) private _config: Config,
-		@inject(TYPES.Logger) private logger: Logger
-	) {}
+		@inject(TYPES.Logger) private logger: Logger,
+		private _readyStatusObserver: ReadyStatusObserver
+	) {
+		this._readyStatusObserver.registerService("Database");
+	}
 
 	/**
 	 * Function responsible for initialization of the Database 
@@ -40,6 +44,7 @@ export class MongooseDatabase implements Database {
 				console.log(error);
 				throw error;
 			} else {
+				this._readyStatusObserver.updateStatus("Database", true);
 				console.log("Database Connected!");
 				this.logger.info('connected to mongo server at: ' + dsn);
 			}

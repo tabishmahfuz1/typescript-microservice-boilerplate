@@ -12,6 +12,7 @@ import { Database } from "./database/Database";
 import { MongooseDatabase } from "./database/Database";
 import { MetricCollectorInterface, PrometheusMetricCollector } from "./providers/MetricsProvider";
 import { UserRespository, MongooseUserRepository } from "./database/repositories/UserRepository";
+import { ReadyStatusObserver } from "./observers/ReadyStatusObserver";
 
 const container = new Container({ autoBindInjectable: true });
 
@@ -22,7 +23,7 @@ container.bind<Logger>(TYPES.Logger).to(STDOutLogger).inSingletonScope();
 container.bind<TokenHandler>(TYPES.TokenHandler).to(JWTHandler).inRequestScope();
 container.bind<Schema>(TYPES.Schema).to(AppSchema).inSingletonScope();
 container.bind<MetricCollectorInterface>(TYPES.MetricCollector).to(PrometheusMetricCollector).inSingletonScope();
-
+container.bind<ReadyStatusObserver>(ReadyStatusObserver).toSelf().inSingletonScope();
 /**
  * Repositories
  */

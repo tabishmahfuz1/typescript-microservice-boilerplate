@@ -20,7 +20,8 @@ export default class DotEnvConfig extends Config {
 			logFilePath: process.env.LOG_FILE_PATH? 
 				path.join(__dirname, `../../../../${process.env.LOG_FILE_PATH}`)
 				: path.join(__dirname, `../../../../logs/app.log`),
-            appName: process.env.APP_NAME || 'TSApp'
+			appName: process.env.APP_NAME || 'TSApp',
+			nodeENV: process.env.NODE_ENV || "development"
         };
     }
 	
