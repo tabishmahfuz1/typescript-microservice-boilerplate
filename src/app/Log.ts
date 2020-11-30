@@ -61,21 +61,21 @@ export class Log4jsLogger implements Logger {
 
 @injectable()
 export class STDOutLogger implements Logger {
-    
     constructor(@inject(TYPES.Config) private config: Config) {
-        console.log("ENV is", this.config.get("nodeENV"))
+        console.log("ENV is", this.config.get("nodeENV"));
     }
 
     info(str: string, data?: any) {
-        console.log(str, data);
+        console.log(`[${new Date().toISOString()}][INFO]`, str, data || '');
     }
 
     debug(str: string, data?: any) {
-        this.config.get("nodeENV") === "development" && console.log(str, data);
+        this.config.get("nodeENV") !== "production" && 
+        console.log(`[${new Date().toISOString()}][DEBUG]`, str, data || '');
     }
 
     error(str: string, data?: any) {
-        console.error(str, data);
+        console.error(`[${new Date().toISOString()}][ERROR]`, str, data || '');
     }
 }
 
