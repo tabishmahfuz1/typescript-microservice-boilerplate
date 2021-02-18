@@ -58,6 +58,20 @@ export class ReadyStatusObserver {
             );
     }
 
+    waitForService(service: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+                if ( !this.serviceList.has(service) ) 
+                reject(new Error(`INVALID_SERVICE: No service registered with name ${service}`));
+            
+                if ( this.serviceList.get(service).isReady ) {
+                    clearInterval(interval);
+                    resolve(true);           
+                }
+            }, 300);
+        });
+    }
+
     isAppReady() {
         return Array
             .from(this.serviceList.values())
