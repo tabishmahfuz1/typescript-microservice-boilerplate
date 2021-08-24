@@ -8,7 +8,7 @@ import { ReadyStatusController } from '../controllers/ReadyStatusController'
 export default class BasePathRoutes extends Routes {
 
     /**
-	 * IMPORTANT: User the '/' prefix before the path name
+	 * IMPORTANT: Use the '/' prefix before the path name
 	 * to avoid the 404 Error
 	 */
     basePath(): string {
@@ -16,7 +16,7 @@ export default class BasePathRoutes extends Routes {
     }
 
     /**
-	 * IMPORTANT: User the '/' prefix before the path name
+	 * IMPORTANT: Use the '/' prefix before the path name
 	 * to avoid the 404 Error
 	 */
     controllers(): IControllerRoute[] {
