@@ -14,7 +14,7 @@ A boilerplate for TypeScript microservices with
 
 ## Get Started
 * Clone the repository
-* Install the dependencies
+* Install the dependencies ( `npm install` )
 * Create a copy of `.env.example` to create a `.env` file and modify the properties as needed. 
 * RUN using `npm start`
 * Open the `/graphql` to access the GraphQL Playground
