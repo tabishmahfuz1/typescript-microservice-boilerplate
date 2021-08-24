@@ -10,6 +10,7 @@ A boilerplate for TypeScript microservices with
 * Prometheus Metric Collection Service
 * Unit Test Setup
 * A Ready State Observer and ReadyStateController pre-included for Kubernetes Healthcheck and other such needs
+* Includes a `Dockerfile`
 
 
 ## Get Started
